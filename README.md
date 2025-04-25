@@ -1,6 +1,6 @@
 # solvation_spectra
 
-### Here is the data and scripts for paper- Practical Corrections for Finite Concentrations Molecular Dynamics Simulations
+### Here are the input and output data, and scripts for paper- Practical Corrections for Finite Concentrations Molecular Dynamics Simulations
 
 ## directory structure
 ```

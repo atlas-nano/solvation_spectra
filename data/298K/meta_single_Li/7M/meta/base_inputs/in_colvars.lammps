@@ -1,0 +1,51 @@
+units                real
+atom_style           full
+boundary             p p p
+dielectric           1
+special_bonds        lj/coul 0.0 0.0 1.0
+                     
+pair_style           lj/charmm/coul/long/opt 9 10.00000
+bond_style           harmonic
+angle_style          harmonic
+dihedral_style       none
+improper_style       none
+kspace_style         pppm 1e-5
+
+
+variable             input string in.lammps
+variable             sname string lammps
+variable             colin string colvar.lmp
+# variable             rep_id equal ${rep_id}
+# variable             restart_id equal ${restart_id}
+# variable             i equal ${i}
+variable             seed equal floor(1000000*random(0,1,${i}+98765))
+print                "Using random seed: ${seed}"   
+                     
+read_restart         /expanse/lustre/scratch/xiruan/temp_project/meta_single_Li/7M/classical/lammps.298K.${restart_id}.restart
+
+pair_modify          mix geometric
+neighbor             2.0 multi
+neigh_modify         every 1 delay 0 check yes
+thermo_style         multi
+thermo_modify        line multi format float %14.6f flush yes
+                     
+reset_timestep       0
+
+
+print                .
+print                ================================================
+print                "NVT metadynamics from different start points"
+print                ================================================
+print                .
+
+# fix shake was applied all the way through the simulation
+
+fix                  shakeH all shake 0.0001 20 500 m 1.0079 a 1                     
+fix                  2 all nvt temp ${rtemp} ${rtemp} 100.0 tloop 10 ploop 10
+fix                  mtd all colvars ${colin} seed 2122 output colvar.out tstat 2
+thermo               100
+restart              1000000 ${sname}.${rtemp}K.mtd.*.restart
+dump                 1 all custom 10000 ${sname}.${rtemp}K.prod.${rep_id}.mtd.lammps id type xu yu zu vx vy vz
+run                  100000000 # run
+unfix                2
+undump               1

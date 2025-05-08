@@ -1,5 +1,5 @@
 import sys
-sys.path.append("/global/cfs/cdirs/m4248/xiaoxusr/solvation_scripts/python")
+sys.path.append("solvation_spectra/analysis/python")
 import argparse
 import os
 from colvars_analysis_tool import ColvarsAnalyzer

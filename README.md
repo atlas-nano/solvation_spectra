@@ -1,7 +1,7 @@
 # solvation_spectra
 
 ### Here are the inputs and scripts for paper- Practical Corrections for Finite Concentrations Molecular Dynamics Simulations
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15369568.svg)](https://doi.org/10.5281/zenodo.15369568)
 ## Directory Structure
 ```
 solvation spectra

@@ -38,7 +38,7 @@ TEMP=${TEMP}
 
 # Run Python script
 conda activate ele_machine_clone
-python colvars_analyzer_script2.py --base_dir \$BASE_PATH --number_of_cv \$NUMBER_OF_CV &> colvars_analysis.log
+python colvars_analyzer_script.py --base_dir \$BASE_PATH --number_of_cv \$NUMBER_OF_CV &> colvars_analysis.log
 echo "Colvars analysis completed!"
 RESULTS_DIR="${DESTINATION_BASE}/results_bootstrap/${CONC}M/"
 mkdir -p \$RESULTS_DIR
@@ -53,11 +53,11 @@ for n_skip in {0..9}; do
     SKIP_FRAMES=\$n_skip
     
     # Free Energy Analysis
-    python free_energy_analysis2.py --base_path \$BASE_PATH --skip_frames \$SKIP_FRAMES --nstrides \$NSTRIDES --O_radii \$O_RADII --Cl_radii \$CL_RADII --Li_index \$LI_INDEX --T \$TEMP &> "free_energy_analysis_${SKIP_FRAMES}.log"
+    python free_energy_analysis.py --base_path \$BASE_PATH --skip_frames \$SKIP_FRAMES --nstrides \$NSTRIDES --O_radii \$O_RADII --Cl_radii \$CL_RADII --Li_index \$LI_INDEX --T \$TEMP &> "free_energy_analysis_${SKIP_FRAMES}.log"
     echo "Free energy analysis with SKIP_FRAMES=\$SKIP_FRAMES completed!"
 
     # Free Energy Correction
-    python free_energy_correction3.py --base_path \$BASE_PATH --nstrides \$NSTRIDES --O_radii \$O_RADII --H_radii \$H_RADII --Cl_radii \$CL_RADII --Li_index \$LI_INDEX --T \$TEMP --conc \$CONC &> "energy_correction_analysis_${SKIP_FRAMES}.log"
+    python free_energy_correction.py --base_path \$BASE_PATH --nstrides \$NSTRIDES --O_radii \$O_RADII --H_radii \$H_RADII --Cl_radii \$CL_RADII --Li_index \$LI_INDEX --T \$TEMP --conc \$CONC &> "energy_correction_analysis_${SKIP_FRAMES}.log"
     echo "Free energy correction with SKIP_FRAMES=\$SKIP_FRAMES completed!"
 
     # Move results to results directory

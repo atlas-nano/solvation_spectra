@@ -7,12 +7,12 @@ import os
 
 # Define temperatures and relevant clusters
 temperatures = [283, 298, 313]
-result_base_list = ["/global/cfs/cdirs/m4248/xiaoxusr/solvation_283K/meta_single_Li/results_bootstrap2", 
+result_base_list = ["/global/cfs/cdirs/m4248/xiaoxusr/solvation_283K/meta_single_Li/results_bootstrap",
 "/global/cfs/cdirs/m4248/xiaoxusr/solvation_298K/meta_single_Li/results_bootstrap",
-"/global/cfs/cdirs/m4248/xiaoxusr/solvation_313K/meta_single_Li/results_bootstrap2"]
+"/global/cfs/cdirs/m4248/xiaoxusr/solvation_313K/meta_single_Li/results_bootstrap"]
 cluster_combinations = ["Cl3Li", "Cl5Li2", "Cl2Li","H2Cl2LiO", "H4Cl2LiO2", "H4Cl4Li2O2", "H2Cl4Li2O", "H2Cl5Li2O"]
 title="Agglomerates (LiCl3, Li2Cl5, LiCl2) \n Free Energy at Different Temperatures and Concentrations"
-output_path = f"/global/cfs/cdirs/m4248/xiaoxusr/free_energy_Agg_temp_conc2.png"
+output_path = f"/global/cfs/cdirs/m4248/xiaoxusr/free_energy_Agg_temp_conc.png"
 
 def plot_agglomerates_free_energy_over_temps(
     temperatures, 

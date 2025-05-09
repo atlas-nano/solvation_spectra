@@ -8,7 +8,7 @@ TEMP=313
 ANALYSIS_SOURCE="/global/cfs/cdirs/m4248/xiaoxusr/solvation_${TEMP}K/meta_single_Li/analysis"
 DESTINATION_BASE="/global/cfs/cdirs/m4248/xiaoxusr/solvation_${TEMP}K/meta_single_Li"
 
-mkdir ${DESTINATION_BASE}/results_bootstrap2
+mkdir ${DESTINATION_BASE}/results_bootstrap
 
 for i in "${!CONCENTRATIONS[@]}"; do
     CONC=${CONCENTRATIONS[$i]}
@@ -16,7 +16,7 @@ for i in "${!CONCENTRATIONS[@]}"; do
     for j in "${!NUMBER_OF_CVS[@]}"; do  
         NUMBER_OF_CV=${NUMBER_OF_CVS[$j]}     
         cp -r ${ANALYSIS_SOURCE}/*.py ${DESTINATION_BASE}/${CONC}M/meta/
-        cat > "${DESTINATION_BASE}/${CONC}M/meta/analysis_bootstrap2.sh" <<EOL
+        cat > "${DESTINATION_BASE}/${CONC}M/meta/analysis_bootstrap.sh" <<EOL
 #!/bin/bash
 #SBATCH -C cpu
 #SBATCH -t 12:00:00
@@ -41,7 +41,7 @@ TEMP=${TEMP}
 conda activate ele_machine_clone
 # python colvars_analyzer_script2.py --base_dir \$BASE_PATH --number_of_cv \$NUMBER_OF_CV &> colvars_analysis.log
 # echo "Colvars analysis completed!"
-# RESULTS_DIR="${DESTINATION_BASE}/results_bootstrap2/${CONC}M/"
+# RESULTS_DIR="${DESTINATION_BASE}/results_bootstrap/${CONC}M/"
 # mkdir -p \$RESULTS_DIR
 # mv \$BASE_PATH/*.csv \$RESULTS_DIR/ 
 # mv \$BASE_PATH/*.pkl \$RESULTS_DIR/ 
@@ -52,7 +52,7 @@ conda activate ele_machine_clone
 # Loop over different SKIP_FRAMES values
 for n_skip in {0..9}; do
     SKIP_FRAMES=\$n_skip
-    RESULTS_DIR="${DESTINATION_BASE}/results_bootstrap2/${CONC}M/SKIP_\${SKIP_FRAMES}"
+    RESULTS_DIR="${DESTINATION_BASE}/results_bootstrap/${CONC}M/SKIP_\${SKIP_FRAMES}"
     # Free Energy Analysis
     cp \$RESULTS_DIR/* \$BASE_PATH/
     python free_energy_analysis2.py --base_path \$BASE_PATH --skip_frames \$SKIP_FRAMES --nstrides \$NSTRIDES --O_radii \$O_RADII --Cl_radii \$CL_RADII --Li_index \$LI_INDEX --T \$TEMP &> "free_energy_analysis_${SKIP_FRAMES}.log"
@@ -62,7 +62,7 @@ for n_skip in {0..9}; do
     echo "Free energy correction with SKIP_FRAMES=\$SKIP_FRAMES completed!"
 
     # Move results to results directory
-    RESULTS_DIR="${DESTINATION_BASE}/results_bootstrap2/${CONC}M/SKIP_\${SKIP_FRAMES}"
+    RESULTS_DIR="${DESTINATION_BASE}/results_bootstrap/${CONC}M/SKIP_\${SKIP_FRAMES}"
     mkdir -p \$RESULTS_DIR
     mv \$BASE_PATH/*.csv \$RESULTS_DIR/ 
     mv \$BASE_PATH/*.pkl \$RESULTS_DIR/ 
@@ -73,8 +73,8 @@ done
 EOL
 
     # Make the generated script executable
-    chmod +x "${DESTINATION_BASE}/${CONC}M/meta/analysis_bootstrap2.sh"
-    echo "Generated script: ${DESTINATION_BASE}/${CONC}M/meta/analysis_bootstrap2.sh"
+    chmod +x "${DESTINATION_BASE}/${CONC}M/meta/analysis_bootstrap.sh"
+    echo "Generated script: ${DESTINATION_BASE}/${CONC}M/meta/analysis_bootstrap.sh"
 
 done
     

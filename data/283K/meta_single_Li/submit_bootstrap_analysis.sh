@@ -13,7 +13,7 @@ for i in "${!CONCENTRATIONS[@]}"; do
     for j in "${!NUMBER_OF_CVS[@]}"; do  
         cd ${DESTINATION_BASE}/${CONC}M/meta
         echo "We are in directory ${DESTINATION_BASE}/${CONC}M/meta"
-        sbatch analysis_bootstrap2.sh
+        sbatch analysis_bootstrap.sh
         echo "Analysis for ${CONC}M meta submitted!"
     done
 done

@@ -34,17 +34,24 @@ For 3 temperatures (283K, 298K, 313K), we firstly conducted classical MD (```cla
   - ```free_energy_error_bar_for_each_cluster.py```: Plot the free energies with error bars for specific cluster from the bootstrap analysis results.
   - ```free_energy_error_bar_for_each_conc.py```: Plot the free energies with error bars at specific concentration from the bootstrap analysis results.
 
-## Example Workflow for 298K 0.5M
+## Example Workflow for 298K 
 Noted that this workflow is currently only for LiCl water solutions. It can be easily adapted for other systems but careful edits to the scripts will be needed.
 - Run Classical MD simulations:
-  - ```cd ${project_dir}/298K/meta_single_Li/0.5M/classical```
+  - ```cd ${project_dir}/298K/meta_single_Li/${CONC}}M/classical```
   - ```sbatch lammps.lammps.slurm```
 - After finishing the Classical MD, we can create inputs and run MetaD simulations:
-  - ```cd ${project_dir}/298K/meta_single_Li/0.5M/meta```
+  - ```cd ${project_dir}/298K/meta_single_Li/${CONC}}M/meta```
   - ```sh mk-folders-cp.sh```
   - ```sbatch submit.sh```
 - After finishing the MetaD, we can do data preparation.
   - ```sh lammpstrj-cp.sh```
-
-
-
+- Generate bootstrap analysis scripts for each concentrations
+  - ```cd ${project_dir}/298K/meta_single_Li```
+  - ```sh copy_to_replicas_bootstrap.sh```
+- Generate bootstrap analysis scripts for each concentrations
+  - ```sh analysis_bootstrap.sh```
+- Plotting with all the 298K results
+  - ```python free_energy_bar_for_each_cluster.py```: Plot free energy of a specific cluster across different concentrations.
+  - ```python free_energy_bar_for_each_conc.py```: Plot free energy of clusters at a specific concentration.
+When you finish all the calculations
+  - ```python agglomerates_plot_script.py```: Compare free energies of agglomerates across 3 temperatures.

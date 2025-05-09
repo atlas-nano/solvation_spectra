@@ -5,7 +5,7 @@ import glob
 import os
 
 # Define results path
-results_base = "/global/cfs/cdirs/m4248/xiaoxusr/solvation_283K/meta_single_Li/results_bootstrap2"
+results_base = "/global/cfs/cdirs/m4248/xiaoxusr/solvation_283K/meta_single_Li/results_bootstrap"
 # Re-import necessary libraries since execution state was reset
 import matplotlib.pyplot as plt
 import numpy as np
@@ -22,7 +22,7 @@ plt.rcParams.update({
 
 
 # Define concentrations
-concentrations = [0.5, 1, 2, 5, 7, 10, 12, 15, 17, 19, 21+"_rerun", 23]
+concentrations = [0.5, 1, 2, 5, 7, 10, 12, 15, 17, 19, 21, 23]
 cluster_labels = ["H8LiO4", "H6ClLiO3", "H12ClLi2O6", "H4ClLiO2", "Cl3Li", "H2Cl2LiO", "H4Cl2LiO2"]  # You will dynamically update this list
 
 for cluster in cluster_labels:

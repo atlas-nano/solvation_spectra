@@ -5,7 +5,7 @@ import glob
 import os
 
 # Define results path
-results_base = "/global/cfs/cdirs/m4248/xiaoxusr/solvation_313K/meta_single_Li/results_bootstrap2"
+results_base = "/global/cfs/cdirs/m4248/xiaoxusr/solvation_313K/meta_single_Li/results_bootstrap"
 # Re-import necessary libraries since execution state was reset
 import matplotlib.pyplot as plt
 import numpy as np

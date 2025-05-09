@@ -5,7 +5,7 @@ import glob
 import os
 
 # Define results path
-results_base = "/global/cfs/cdirs/m4248/xiaoxusr/solvation_283K/meta_single_Li/results_bootstrap2"
+results_base = "/global/cfs/cdirs/m4248/xiaoxusr/solvation_283K/meta_single_Li/results_bootstrap"
 plt.rcParams.update({
     "font.size": 22,  # Increased overall font size while keeping the original style
     "axes.titlesize": 22,

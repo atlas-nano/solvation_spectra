@@ -24,17 +24,17 @@ For 3 temperatures (283K, 298K, 313K), we firstly conducted classical MD (```cla
 ```analysis```
 - Analyze Modules
   - ```python```
-    - ```colvars_analysis_tool.py```: Metadynamics collective variable (CV) analyzer (equilibrium check)
     - ```free_energy_tool.py```: analyzer for free energy calculation and correction
 - Scripts for each simulation condition (eg. 298K 0.5M)
-  - ```colvars_analyzer_script.py```: Check the equilibration of Metadynamics by plotting the histgram and trajectory of CVs sampled over time, and plotting the potential of mean force (PMF)
   - ```free_energy_analysis.py```: Reweight the probability of configurations sampled by Metadynamics to get the free energy surface.
   - ```free_energy_correction.py```: Chemical potential correction.
 - Scripts for collective analysis 
   - ```agglomerates_plot_script.py```: Plot agglomerates relative free energy at different concentrations and temperatures.
   - ```free_energy_error_bar_for_each_cluster.py```: Plot the free energies with error bars for specific cluster from the bootstrap analysis results.
   - ```free_energy_error_bar_for_each_conc.py```: Plot the free energies with error bars at specific concentration from the bootstrap analysis results.
-
+- Scripts for balanced exponential reweighting in Supplementary Information
+  - ```balanced_exponential_reweighting.ipynb```
+  
 ## Example Workflow for 298K 
 Noted that this workflow is currently only for LiCl water solutions. It can be easily adapted for other systems but careful edits to the scripts will be needed.
 - Run Classical MD simulations:
